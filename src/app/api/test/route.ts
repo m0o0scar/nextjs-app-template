@@ -1,8 +1,7 @@
-import { getSession } from '@auth0/nextjs-auth0';
+import { getSession } from '@auth0/nextjs-auth0/edge';
 import type { NextRequest } from 'next/server';
 
-// Auth0 doesn't support edge runtime
-// export const runtime = 'edge';
+export const runtime = 'edge';
 
 export async function GET(request: NextRequest) {
   const session = await getSession();
