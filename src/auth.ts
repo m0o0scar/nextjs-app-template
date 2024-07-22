@@ -15,4 +15,19 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     }),
     GitHub,
   ],
+  callbacks: {
+    jwt({ token, user, account }) {
+      if (account?.access_token) {
+        token.accessToken = account.access_token;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      const { accessToken = '' } = token as {
+        accessToken?: string;
+      };
+      Object.assign(session, { accessToken });
+      return session;
+    },
+  },
 });
