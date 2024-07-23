@@ -10,6 +10,8 @@ import { AdapterUser } from 'next-auth/adapters';
 
 declare module 'next-auth' {
   interface Session {
+    accessToken: string;
+    provider: string;
     error?: 'RefreshAccessTokenError';
   }
 }
@@ -115,7 +117,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     async session(params) {
       const { session, token } = params;
       if (token.user) {
-        session.user = token.user as AdapterUser;
+        Object.assign(session, {
+          accessToken: token.access_token,
+          provider: token.provider,
+          user: token.user,
+        });
       }
 
       return session;
