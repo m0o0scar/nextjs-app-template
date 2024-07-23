@@ -9,7 +9,7 @@ export function SignIn() {
         await signIn();
       }}
     >
-      <button className="btn" type="submit">
+      <button className="btn btn-sm" type="submit">
         Sign in
       </button>
     </form>
@@ -24,7 +24,7 @@ export function SignOut() {
         await signOut();
       }}
     >
-      <button className="btn" type="submit">
+      <button className="btn btn-sm" type="submit">
         Sign Out
       </button>
     </form>
