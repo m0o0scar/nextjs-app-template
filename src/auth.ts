@@ -6,7 +6,6 @@ import 'next-auth/jwt';
 import Google from 'next-auth/providers/google';
 import GitHub from 'next-auth/providers/github';
 import { JWT } from 'next-auth/jwt';
-import { AdapterUser } from 'next-auth/adapters';
 
 declare module 'next-auth' {
   interface Session {
@@ -125,6 +124,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       return session;
+    },
+
+    authorized: async ({ auth }) => {
+      // Protecting resources with middleware
+      // https://authjs.dev/getting-started/session-management/protecting#nextjs-middleware
+      // Logged in users are authenticated, otherwise redirect to login page
+      return !!auth;
     },
   },
 });
