@@ -1,4 +1,4 @@
-import { auth } from '@/auth';
+import { auth } from '@/components/auth';
 import type { NextRequest } from 'next/server';
 
 export const runtime = 'edge';

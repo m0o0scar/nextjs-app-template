@@ -1,5 +1,5 @@
 // see https://authjs.dev/getting-started/session-management/get-session
-import { auth } from '@/auth';
+import { auth } from '.';
 
 export default async function UserProfile() {
   const session = await auth();

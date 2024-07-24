@@ -1,5 +1,5 @@
 // see https://authjs.dev/getting-started/session-management/login
-import { signIn, signOut } from '@/auth';
+import { signIn, signOut } from '.';
 
 export function SignIn() {
   return (
