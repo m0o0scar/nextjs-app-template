@@ -22,9 +22,12 @@ export const getSessionCallback: GetSessionCallback =
     const { providers = [] } = options || {};
     const { session, token } = params;
 
-    // are the required scopes granted?
+    // make sure user is logged into a supported provider
     const provider = providers.find((p) => p.name === token?.provider);
-    const requiredScopes = provider?.scopes || [];
+    if (!provider) throw new Error('Provider not found');
+
+    // are the required scopes granted?
+    const requiredScopes = provider.scopes || [];
     if (requiredScopes.length) {
       const grantedScopes = token?.scope?.split(/[ ,]/);
       const hasRequiredScopes = requiredScopes.every((requiredScope) =>
